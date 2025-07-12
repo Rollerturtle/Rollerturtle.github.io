@@ -1,250 +1,383 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Portofolio Web">
-    <meta name="author" content="Myself">
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Dummy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        .gradient-skill
-            {
-                background-image: linear-gradient(#FC8181,#FED7D7);
-            }
-        .gradient-bottom{
-            background-image: linear-gradient(#4C518F, #702459);
-        }
         html {
-            scroll-behavior: smooth;
+        scroll-behavior: smooth;
         }
 
         body {
-            margin: 0;
-            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c;
+            color: #e2e8f0;
         }
-        .sticky {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .section-title {
+            color: #63b3ed;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            white-space: nowrap;
+        }
+        .project-image {
             width: 100%;
-            z-index: 999;
-            background-color: white;
+            height: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-        ::-webkit-scrollbar {
-            width: 10px;
+        #scrollToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            font-size: 30px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            transition: opacity 0.3s, transform 0.3s ease-in-out;
+            opacity: 0.8;
+        }
+        #scrollToTopBtn:hover {
+            opacity: 1;
+            transform: translateY(-5px);
         }
 
-        ::-webkit-scrollbar-track {
-            background-color: #ffffff;
+        .get-in-touch-link {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem; 
         }
 
-        ::-webkit-scrollbar-thumb {
-            background-color: #4c51bf;
-            border-radius: 5px;
+        .get-in-touch-link:hover {
+            background-color: #63b3ed;
+            color: #1a202c; 
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: #2c317a;
+        .background-link {
+            font-weight: 700;
+            text-decoration: none;
+            transition: text-decoration 0.3s ease; 
+        }
+
+        .background-link:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* Styles for project tags */
+        .project-tag {
+            display: inline-block;
+            background-color: transparent; /* No background color */
+            color: #63b3ed; /* Blue text color */
+            border: 1px solid #63b3ed; /* Blue border */
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem; /* Slightly rounded corners */
+            font-size: 0.75rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            white-space: nowrap; /* Prevent text from wrapping */
+        }
+
+        /* Styles for project title links */
+        .project-title-link {
+            display: flex;
+            align-items: center;
+            color: #e2e8f0; /* Changed to white text color */
+            text-decoration: none; /* No underline by default */
+        }
+
+        .project-title-link .arrow {
+            margin-left: 0.5rem;
+            color: #63b3ed; /* Blue arrow color */
+            transition: transform 0.3s ease-in-out; /* Smooth transition for arrow movement */
+        }
+
+        .project-title-link:hover .arrow {
+            transform: translateX(5px); /* Move arrow 5px to the right on hover */
+        }
+
+        .project-title-link:hover {
+            text-decoration: none; /* Ensure no underline on hover */
+        }
+
+        /* Styles for resume link */
+        .resume-link {
+            display: flex;
+            align-items: center;
+            color: #e2e8f0; /* White text color */
+            text-decoration: none; /* No underline by default */
+        }
+
+        .resume-link .arrow {
+            margin-left: 0.5rem;
+            color: #63b3ed; /* Blue arrow color */
+            transition: transform 0.3s ease-in-out; /* Smooth transition for arrow movement */
+        }
+
+        .resume-link:hover .arrow {
+            transform: translateX(5px); /* Move arrow 5px to the right on hover */
+        }
+
+        .resume-link:hover {
+            text-decoration: none; /* Ensure no underline on hover */
+        }
+
+        /* Custom styles for image arrows */
+        .arrow-image {
+            width: 1.25rem; /* Adjust size as needed */
+            height: auto;
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease-in-out;
+        }
+        .project-title-link:hover .arrow-image,
+        .resume-link:hover .arrow-image {
+            transform: translateX(5px);
         }
     </style>
-    <script>
-        window.addEventListener('scroll', function() {
-            var navbar = document.getElementById('navbar');
-            if (window.pageYOffset > 0) {
-                navbar.classList.add('sticky', 'top-0');
-            } else {
-                navbar.classList.remove('sticky', 'top-0');
-            }
-        });
-
-    </script>
-    <title>Portofolio Website</title>
 </head>
-<body>
-    <!--Layout-->
+<body class="antialiased">
+    <div class="min-h-screen flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
 
-    <!--Nav-Section-->
-    <section class="w-screen mx-auto px-4">
-        <nav id="navbar" class="flex flex-wrap p-6 justify-between bg-white-700">
-            <div class="flex flex-shrink-0 mr-6">
-                <img src="img/logo1.png" class="h-10 w-50 mr-2">
+         <section id="summary" class="w-full max-w-4xl text-left pt-32 pb-64 pl-0 md:pl-0">
+            <p class="text-3xl mb-24">Hello! 👋</p>
+            <h1 class="text-4xl leading-tight mb-24" font-normal>
+                I'm <span class="text-blue-400 font-bold">Adhwa Moyafi</span>, an enthusiastic <br>Computer Science graduate with <br>experience in web apps development, <br>and a passion for cybersecurity 🧑‍💻
+            </h1>
+            <div class="flex items-center text-lg">
+                <span class="mr-2">Get in touch 👉</span>
+                <a href="mailto:adhwamoyafi.h003@gmail.com" class="get-in-touch-link">adhwamoyafi.h003@gmail.com</a>
             </div>
-            <div class="block lg:hidden">
-                <a class="flex items-center px-3 py-2 rounded border border-indigo-400 text-indigo-500 hover:text-indigo-700 hover:border-indigo-700">
-                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
-                    </svg>
-                </a>
-            </div>  
-            <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-                <div class="text-sm lg:flex-grow">
-                    <a href="#about" class="block mt-4 lg:inline-block lg:mt-0  text-gray-600 hover:text-gray-900 text-lg mr-4">
-                        About Me
-                    </a>
-                    <a href="#recent" class="block mt-4 lg:inline-block lg:mt-0  text-gray-600 hover:text-gray-900 text-lg mr-4">
-                        Portfolio
-                    </a>
-                    <a href="#skill" class="block mt-4 lg:inline-block lg:mt-0  text-gray-600 hover:text-gray-900 text-lg mr-4">
-                        Framework Skill
-                    </a>
-                    <a href="#contact" class="block mt-4 lg:inline-block lg:mt-0  text-gray-600 hover:text-gray-900 text-lg mr-4">
-                        Contact Me
-                    </a>
-                </div>
-            </div>	
-            <div>
-                <a href="#contact" class="inline-block text-sm px-4 py-2 rounded text-gray-600 border border-gray-600 hover:border-transparent hover:text-white hover:bg-indigo-700 mt-4 lg:mt-0">
-                Contact me
-                </a>
-            </div>
-        </nav>
-    </section>
+        </section>
 
-    <!--Jumbotron-->
-    <section id="about" class="w-screen mx-auto py-4 bg-indigo-700">
-        <div class="px-16 py-8">
-            <h1 class="w-full text-5xl font-bold text-center text-white">About Me</h1>
-            <div class="mb-4">	
-                <div class="bg-pink-500 w-2/3 md:w-1/6 opacity-75 rounded h-1 mx-auto"></div>
+        <section id="background-skills" class="w-full max-w-4xl py-20 flex flex-col md:flex-row md:gap-20">
+            <div class="md:w-1/4 mb-8 md:mb-0">
+                <h2 class="section-title text-lg md:text-right">BACKGROUND</h2>
             </div>
-            <h2 class="text-3xl font-bold mb-2 text-white text-center">
-                Hi, I'm Adhwa Moyafi Hartoyo. Nice to meet you!
-            </h2>   
-            <h3 class="text-lg mb-2 text-white text-center">
-                I'm a creative programmer and analyst. Besides developing applications using various programming languages, I'm also skilled in designing user-oriented systems.
-            </h3>
-            <div class="w-full">	
-                <div class="px-4 py-4">
-                    <img src="img/FP.png" class="rounded-full max-w-full mx-auto text-center w-48" />
-                </div>
+            <div class="md:w-3/4 text-sm">
+                <p class="mb-4">
+                    I'm currently an Odoo Developer at <a href="https://doodex.net/about-us" class="background-link">Doodex</a> building things for the client ERP system with some awesome people. I recently graduated from <a href="https://ft.unsoed.ac.id/" class="background-link">Jenderal Soedirman University</a>, where my academic journey ignited a deep passion for cybersecurity and inspired me to pursue a career as a security analyst.
+                </p>
+                <p class="mb-4">
+                    As a software engineer, I enjoy bridging the gap between engineering and design to build scalable, efficient apps with engaging, pixel-perfect interfaces. I’m also passionate about expanding my cybersecurity expertise and tackling new cybersecurity challenges.
+                </p>
+                <p>
+                    <span class="font-semibold">When I'm not in front of a computer screen</span>, I'm probably working out, jogging, or cruising around on my motorcycle.
+                </p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!--Skills-->
-    <section id="skill" class="w-screen mx-auto py-4 bg-white px-4">
-        <div class="flex flex-wrap">
-            <div class="w-full md:w-4/12 ml-auto px-4 mt-20">
-                <img src="img/bg1.png" class="max-w-full rounded-lg ">
+        <section id="skills" class="w-full max-w-4xl py-20 flex flex-col md:flex-row md:gap-20">
+            <div class="md:w-1/4 mb-8 md:mb-0">
+                <h2 class="section-title text-lg md:text-right">SKILLS</h2>
             </div>
-            <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
-                <div class="md:pr-12">
-                    <h1 class="w-full my-2 text-5xl font-bold text-center text-gray-700">Framework Skills</h1>
-                    <div class="mb-20">
-                        <div class="h-1 mx-auto bg-pink-500 w-2/3 opacity-75 my-0 mx-0 rounded"></div>
+            <div class="md:w-3/4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-6 text-xs">
+                    <div>
+                        <h3 class="font-semibold mb-2 text-lg">LANGUAGES</h3>
+                        <ul class="list-none p-0">
+                            <li>JavaScript</li>
+                            <li>TypeScript</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>Python</li>
+                            <li>SQL</li>
+                            <li>C++</li>
+                        </ul>
                     </div>
-                    <div class="bg-white shadow-lg rounded-lg p-4">
-                        <ul class="list-none mt-4">
-                            <li class="grid grid-cols-2 py-2">
-                                <p class="text-lg text-gray-600">Bootstrap</p>
-                                <div class="gradient-skill w-3/4 animate-pulse"></div>
-                            </li>
-                            <li class="grid grid-cols-2 py-2">
-                                <p class="text-lg text-gray-600">Laravel</p>
-                                <div class="gradient-skill w-1/2 animate-pulse"></div>
-                            </li>
-                            <li class="grid grid-cols-2 py-2">
-                                <p class="text-lg text-gray-600">Tailwind CSS</p>
-                                <div class="gradient-skill w-1/6 animate-pulse"></div>
-                            </li>
-                            <li class="grid grid-cols-2 py-2">
-                                <p class="text-lg text-gray-600">React.js</p>
-                                <div class="gradient-skill w-1/12 animate-pulse"></div>
-                            </li>
+                    <div>
+                        <h3 class="font-semibold mb-2 text-lg">FRAMEWORKS</h3>
+                        <ul class="list-none p-0">
+                            <li>Flutter</li>
+                            <li>React</li>
+                            <li>Laravel</li>
+                            <li>NodeJS</li>
+                            <li>Tailwind</li>
+                            <li>Wordpress</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-2 text-lg">TOOLS</h3>
+                        <ul class="list-none p-0">
+                            <li>Bash</li>
+                            <li>Git & Github</li>
+                            <li>Chrome DevTools</li>
+                            <li>Postman</li>
+                            <li>MongoDB</li>
+                            <li>PostgreSQL</li>
+                            <li>XAMPP</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-2 text-lg">CYBERSECURITY</h3>
+                        <ul class="list-none p-0">
+                            <li>Splunk</li>
+                            <li>ELK</li>
+                            <li>Caldera</li>
+                            <li>Wazuh</li>
+                            <li>Wireshark</li>
+                            <li>DFIR Tools</li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="recent" class="py-8 bg-white container mx-auto px-8">
-        <div class="text-center mb-8">
-            <h1 class="w-full my-2 text-5xl font-bold text-gray-700">My Portfolio</h1>
-               <div class="mb-4">
-                  <div class="h-1 mx-auto bg-pink-500  w-2/3 md:w-1/4 opacity-75 my-0 py-0 rounded">
-                   </div>
+        <section id="experience" class="w-full max-w-4xl py-32 flex flex-col md:flex-row md:gap-20">
+            <div class="md:w-1/4 mb-8 md:mb-0">
+                <h2 class="section-title text-lg md:text-right">EXPERIENCE</h2>
+            </div>
+            <div class="md:w-3/4 text-xs">
+                <div class="space-y-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-base"><a href="https://doodex.net/about-us">Doodex Jaya Makmur</a></h3>
+                            <p class="text-gray-400">Odoo Developer</p>
+                        </div>
+                        <p class="text-gray-400">Apr - Aug 2025</p>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-base"><a href="https://kehutanan.go.id/">Indonesia Ministry of Forestry</a></h3>
+                            <p class="text-gray-400">Front-end Dev (Remote)</p>
+                        </div>
+                        <p class="text-gray-400">Apr - Jul 2025</p>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-base"><a href="https://web.pln.co.id/">PT. PLN</a></h3>
+                            <p class="text-gray-400">Front-end Dev</p>
+                        </div>
+                        <p class="text-gray-400">Jan - Feb 2024</p>
+                    </div>
                 </div>
-         </div>
-         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 m-8">
-            <div class="bg-white px-4 py-4 m-2 shadow-lg rounded">
-                <img src="img/project1.png" class="w-full rounded-lg h-64">
-                <div class="px-2 py-2 text-center">
-                    <p class="font-bold text-xl mb-2 text-gray-700">Grocie. | Organic Marketplace</p>
-                    <p class="text-gray-700 text-base">Grocie Organic Marketplace is my personal project, where I designed and developed a responsive website that serves as an online platform connecting consumers with sellers of organic products. Built using native PHP, Bootstrap, MySQL, and JavaScript, this marketplace offers a wide range of organic products such as food, beverages, body care items, and household products.
-                     </p>
-                 </div>
-                 <div class="px-2 py-4 text-center">
-                    <a href="https://marketbuah.000webhostapp.com/login.php" target="_blank" rel="noopener noreferrer">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 shadow-md rounded-tr-lg rounded-bl-lg">
-                          Details
-                        </button>
-                      </a>
-                  </div>
+                <div class="mt-12 text-center md:text-left">
+                    <a href="cv_adhwa_updated.pdf" class="resume-link text-lg">
+                        View My Resume <img src="arrow.png" alt="Arrow" class="arrow-image">
+                    </a>
+                </div>
             </div>
-            <div class="bg-white px-4 py-4 m-2 shadow-lg rounded">
-                <img src="img/project2.png" class="w-full rounded-lg h-64">
-                <div class="px-2 py-2 text-center">
-                    <p class="font-bold text-xl mb-2 text-gray-700">UnsoedFair | Job Fair for Jenderal Soedirman College Student</p>
-                    <p class="text-gray-700 text-base">UnsoedFair is my personal project, an innovative web application designed specifically for job fairs targeting students and graduates of Universitas Jenderal Soedirman. This platform aims to bridge the gap between students, graduates, and potential employers, providing a seamless and efficient way for job seekers to connect with job opportunities.
-                     </p>
-                 </div>
-                 <div class="px-2 py-4 text-center">
-                    <a href="https://github.com/maulana1k/unsoed-fair" target="_blank" rel="noopener noreferrer">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 shadow-md rounded-tr-lg rounded-bl-lg">
-                          Details
-                        </button>
-                      </a>
-                  </div>
-            </div>
-         </div>
-    </section>
+        </section>
 
-    <section id="contact" class="w-screen mx-auto py-4 bg-indigo-700">
-        <h1 class="w-full my-2 text-5xl font-bold text-center text-white ">Contact Me</h1>
-        <div class="mb-4">
-            <div class="h-1 mx-auto bg-pink-500 w-1/4 opacity-75 mt-1 mb-6 py-1 rounded">   
+        <section id="projects" class="w-full max-w-4xl py-32 flex flex-col md:flex-row md:gap-20">
+            <div class="md:w-1/4 mb-8 md:mb-0">
+                <h2 class="section-title text-lg md:text-right">PROJECTS</h2>
             </div>
-            <div class="container p-4 mb-6 w-full lg:w-1/2 shadow-lg rounded-lg bg-gray-200 mx-auto">
-                <form class="p-5 lg:p-10 text-center" action="https://formsubmit.co/adhwamoyafi.h003@gmail.com" method="post">
-                    <h4 class="text-2xl font-semibold">Get in Touch!</h4>
-                    <p class="mt-1 mb-4 text-gray-600">Send me a Message</p>
-                    <div class="w-full mb-4 mt-8">
-                        <label for="" class="uppercase text-gray-600 text-xs font-bold">Full Name</label>
-                        <input type="text" class="mt-2 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm shadow w-full" placeholder="Enter your Full Name!" name="name">
+            <div class="md:w-3/4 space-y-8 text-xs">
+                <div>
+                    <h3 class="font-semibold text-base mb-2">
+                        <a href="https://github.com/Rollerturtle/GIS_Kehutanan" class="project-title-link">
+                            SIKMA <img src="arrow.png" alt="Arrow" class="arrow-image">
+                        </a>
+                    </h3>
+                    <p class="text-gray-400 mb-2">
+                        Information system for disaster mitigation and adaptation, developed for the <a href="https://kehutanan.go.id/">Indonesian Ministry of Forestry</a>.
+                    </p>
+                    <div class="flex flex-wrap">
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Tailwind</span>
+                        <span class="project-tag">Leaflet</span>
+                        <span class="project-tag">WebGL</span>
+                        <span class="project-tag">MySQL</span>
                     </div>
-                    <div class="w-full mb-4 mt-8">
-                        <label for="" class="uppercase text-gray-600 text-xs font-bold">Email</label>
-                        <input type="email" name="email" class="mt-2 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm shadow w-full" placeholder="Enter your Email Address!">
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-base mb-2">
+                        <a href="https://github.com/Rollerturtle/dashboard-pln" class="project-title-link">
+                            Dashboard Visualization Web App <img src="arrow.png" alt="Arrow" class="arrow-image">
+                        </a>
+                    </h3>
+                    <p class="text-gray-400 mb-2">
+                        Web dashboard, implemented for PLN UP3 Purwokerto, provides marketing teams with dynamic data visualizations, a centralized file-sharing interface for outreach materials, and an interactive customer-distribution map.
+                    </p>
+                    <div class="flex flex-wrap">
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Tailwind</span>
+                        <span class="project-tag">Leaflet</span>
+                        <span class="project-tag">Express JS</span>
                     </div>
-                    <div class="w-full mb-4 mt-8">
-                        <label for="" class="uppercase text-gray-600 text-xs font-bold">Message</label>
-                        <textarea name="messages" class="mt-2 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm shadow w-full" placeholder="Write your Message!" name="" id="" cols="80" rows="4"></textarea>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-base mb-2">
+                        <a href="https://github.com/Rollerturtle/DairyMarketplace" class="project-title-link">
+                            Grocie. <img src="arrow.png" alt="Arrow" class="arrow-image">
+                        </a>
+                    </h3>
+                    <p class="text-gray-400 mb-2">
+                         Final project for my Web Programming course. A web-based e-commerce platform built with native PHP and Bootstrap.
+                    </p>
+                    <div class="flex flex-wrap">
+                        <span class="project-tag">PHP</span>
+                        <span class="project-tag">MySQL</span>
+                        <span class="project-tag">Bootstrap</span>
+                        <span class="project-tag">CSS</span>
+                        <span class="project-tag">JavaScript</span>
                     </div>
-                    <div class="mt-6">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://rollerturtle.github.io/">
-                        <button class="transition ease-in-out delay-50 bg-indigo-700 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:bg-indigo-900 hover:shadow-lg hover:-translate-y-1 hover:scale-110 duration-200" type="submit">Send Message</button>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-base mb-2">
+                        <a href="https://github.com/Rollerturtle/gamecom" class="project-title-link">
+                            Gamecom <img src="arrow.png" alt="Arrow" class="arrow-image">
+                        </a>
+                    </h3>
+                    <p class="text-gray-400 mb-2">
+                         Final project for my Mobile Programming course. A collection of lightweight games built with Flutter and Firebase.
+                    </p>
+                    <div class="flex flex-wrap">
+                        <span class="project-tag">Flutter</span>
+                        <span class="project-tag">Firebase</span>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </section>
-    <section class="w-screen mx-auto py-4 bg-white mt-8 mb-8">
-		<div class="text-center">
-			<a href="https://github.com/Rollerturtle" class="text-indigo-700 hover:text-indigo-900 p-2 ">
-				<i class="fa-2x fab fa-github"></i>
-			 </a>
-			 <a href="https://wa.me/6281370783714" class="text-indigo-700 hover:text-indigo-900 p-2 ">
-				<i class="fa-2x fab fa-whatsapp"></i>
-			 </a>
-			 <a href="https://www.instagram.com/adhwamh/" class="text-indigo-700 hover:text-indigo-900 p-2 ">
-			   <i class="fa-2x fab fa-instagram"></i>
-			 </a>
-		</div>
-		<div class="text-center mt-4 text-gray-600">
-            &copy; 2023 By A.M.
-        </div>        
-	</section>
+        </section>
+
+        <footer class="w-full max-w-4xl py-12 flex flex-col sm:flex-row justify-between items-center text-gray-400 text-sm mt-auto pb-0">
+            <div class="mb-4 sm:mb-0 text-center sm:text-left">
+                Designed & Developed by<br>
+                Adhwa Moyafi 🤘 2025
+            </div>
+            <div class="flex space-x-6">
+
+                <a href="http://dx.doi.org/10.22266/ijies2025.0229.49" class="text-blue-400 hover:underline">RESEARCH PAPER</a>
+                <a href="https://github.com/Rollerturtle" class="text-blue-400 hover:underline">GITHUB</a>
+                <a href="https://www.linkedin.com/in/adhwa-hartoyo/" class="text-blue-400 hover:underline">LINKEDIN</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <button onclick="scrollToTop()" id="scrollToTopBtn" title="Go to top">👆</button>
+
+    <script>
+        let mybutton = document.getElementById("scrollToTopBtn");
+        let backgroundSkillsSection = document.getElementById("background-skills");
+
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            let backgroundSkillsOffset = backgroundSkillsSection.offsetTop;
+
+            if (document.body.scrollTop > backgroundSkillsOffset || document.documentElement.scrollTop > backgroundSkillsOffset) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 </body>
 </html>
